@@ -11,7 +11,6 @@ class Activities:
     def Open(self,request):
         try:
             url, last = "https://", ".com"
-
             key_word = word_search.KeyWord.wordMatch(request)
             print(key_word)
             if key_word is None:
