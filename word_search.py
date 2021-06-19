@@ -8,3 +8,11 @@ class KeyWord:
             if i in KeyWord.wordList:
                 return i
         return None
+    def searchQuery(self,request):
+        query = ""
+        if " " in request:
+            request = request.split()
+            request.remove("search")
+            request.remove("about")
+            query = "+".join(request)
+            return query

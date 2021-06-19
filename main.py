@@ -20,8 +20,9 @@ class Recognizer:
         text = "hello,"+name+" what can i do for you?"
         Recognizer.Speak(text)
         firstTime = True
+        runAgain = True
         with sr.Microphone() as source:
-            while True:
+            while runAgain:
                 if firstTime is False:
                     Recognizer.Speak(random.choice(Recognizer.requestList))
                 firstTime = False
@@ -29,8 +30,9 @@ class Recognizer:
                 audio = recognize.listen(source)
                 validity = recognize.recognize_google(audio)
                 print(validity)
-                if "no" in validity:
+                if "no" in validity.split() or 'not' in validity.split() or 'nothing' in validity.split():
                     Recognizer.Speak("Okay, shutting down myself. Have a nice day")
+                    runAgain = False
                     break
 
                 try:
